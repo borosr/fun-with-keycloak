@@ -1,0 +1,13 @@
+version: '3'
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:12.0.2
+    hostname: keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+    volumes:
+      - $PWD/src/main/resources/realm.json:/tmp/realm.json
+    ports:
+      - 8180:8080
+    command: "-Dkeycloak.migration.action=import -Dkeycloak.profile.feature.upload_scripts=enabled -Dkeycloak.migration.strategy=OVERWRITE_EXISTING -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/tmp/realm.json"
