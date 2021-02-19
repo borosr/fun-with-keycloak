@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./db/db
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+
+keycloak:
+  realm: custom
+  auth-server-url: http://localhost:8180/auth
+  ssl-required: external
+  resource: custom-app
+  credentials.secret: 7ac56732-4b29-42f0-bb72-701698edf139
+  use-resource-role-mappings: true
+  bearer-only: false
+
+keycloakAdmin:
+  realm: master
+  resource: admin-cli
+  username: admin
+  password: admin
