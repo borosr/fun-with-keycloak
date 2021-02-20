@@ -36,4 +36,8 @@ public class UserService {
                 .map(user -> UserDTO.builder().username(user.getUsername()).fullName(user.getFullName()).build())
                 .collect(Collectors.toList());
     }
+
+    public Optional<User> findFirstByUsername(String username) {
+        return userRepository.findFirstByUsername(username);
+    }
 }
