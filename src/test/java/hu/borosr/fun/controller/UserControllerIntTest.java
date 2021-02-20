@@ -2,7 +2,7 @@ package hu.borosr.fun.controller;
 
 import com.github.javafaker.Faker;
 import hu.borosr.fun.dto.UserDTO;
-import hu.borosr.fun.persistence.sql.entity.Role;
+import hu.borosr.fun.persistence.Role;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.extern.slf4j.Slf4j;

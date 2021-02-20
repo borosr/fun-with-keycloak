@@ -1,8 +1,8 @@
 package hu.borosr.fun.service;
 
 import hu.borosr.fun.dto.ProductDTO;
+import hu.borosr.fun.persistence.common.repository.ProductRepository;
 import hu.borosr.fun.persistence.sql.entity.Product;
-import hu.borosr.fun.persistence.sql.repository.ProductRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

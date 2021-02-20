@@ -1,6 +1,6 @@
 package hu.borosr.fun.service;
 
-import hu.borosr.fun.persistence.sql.entity.Role;
+import hu.borosr.fun.persistence.Role;
 import hu.borosr.fun.exception.ValidationException;
 import hu.borosr.fun.keycloak.keycloak.KeycloakPropertySource;
 import lombok.RequiredArgsConstructor;
