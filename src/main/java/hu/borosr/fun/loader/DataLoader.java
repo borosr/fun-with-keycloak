@@ -1,8 +1,8 @@
 package hu.borosr.fun.loader;
 
 import hu.borosr.fun.dto.UserDTO;
-import hu.borosr.fun.entity.Role;
-import hu.borosr.fun.entity.User;
+import hu.borosr.fun.persistence.sql.entity.Role;
+import hu.borosr.fun.persistence.sql.entity.User;
 import hu.borosr.fun.exception.ValidationException;
 import hu.borosr.fun.service.UserService;
 import lombok.RequiredArgsConstructor;

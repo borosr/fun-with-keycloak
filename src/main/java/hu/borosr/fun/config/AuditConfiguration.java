@@ -1,6 +1,6 @@
 package hu.borosr.fun.config;
 
-import hu.borosr.fun.entity.User;
+import hu.borosr.fun.persistence.sql.entity.User;
 import hu.borosr.fun.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.KeycloakPrincipal;

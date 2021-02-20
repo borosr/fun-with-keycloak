@@ -1,4 +1,4 @@
-package hu.borosr.fun.entity;
+package hu.borosr.fun.persistence.sql.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

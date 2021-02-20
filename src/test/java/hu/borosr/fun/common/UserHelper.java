@@ -1,7 +1,7 @@
 package hu.borosr.fun.common;
 
 import hu.borosr.fun.dto.UserDTO;
-import hu.borosr.fun.entity.Role;
+import hu.borosr.fun.persistence.sql.entity.Role;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import org.keycloak.representations.AccessTokenResponse;

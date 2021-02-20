@@ -1,6 +1,6 @@
-package hu.borosr.fun.repository;
+package hu.borosr.fun.persistence.sql.repository;
 
-import hu.borosr.fun.entity.User;
+import hu.borosr.fun.persistence.sql.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

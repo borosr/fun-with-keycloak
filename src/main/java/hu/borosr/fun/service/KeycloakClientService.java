@@ -1,6 +1,6 @@
 package hu.borosr.fun.service;
 
-import hu.borosr.fun.entity.Role;
+import hu.borosr.fun.persistence.sql.entity.Role;
 import hu.borosr.fun.exception.ValidationException;
 import hu.borosr.fun.keycloak.keycloak.KeycloakPropertySource;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
-import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.ClientRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
@@ -18,8 +17,6 @@ import org.springframework.stereotype.Service;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @Service

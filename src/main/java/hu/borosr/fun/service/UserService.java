@@ -1,10 +1,10 @@
 package hu.borosr.fun.service;
 
 import hu.borosr.fun.dto.UserDTO;
-import hu.borosr.fun.entity.Role;
-import hu.borosr.fun.entity.User;
+import hu.borosr.fun.persistence.sql.entity.Role;
+import hu.borosr.fun.persistence.sql.entity.User;
 import hu.borosr.fun.exception.ValidationException;
-import hu.borosr.fun.repository.UserRepository;
+import hu.borosr.fun.persistence.sql.repository.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
