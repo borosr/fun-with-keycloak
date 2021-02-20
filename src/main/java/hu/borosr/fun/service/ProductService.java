@@ -2,7 +2,6 @@ package hu.borosr.fun.service;
 
 import hu.borosr.fun.dto.ProductDTO;
 import hu.borosr.fun.persistence.common.repository.ProductRepository;
-import hu.borosr.fun.persistence.sql.entity.Product;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -21,18 +19,13 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public ProductDTO create(@NonNull ProductDTO productDTO) {
-        return toDto(
-                productRepository.save(toEntity(productDTO))
-        );
+        return productRepository.save(productDTO);
     }
 
     public ProductDTO update(@NonNull String id, @NonNull ProductDTO productDTO) {
-        Product product = productRepository.findById(id).orElseThrow();
+        ProductDTO product = productRepository.findById(id).orElseThrow();
         productRepository.update(id, productDTO.getName(), productDTO.getPrice());
-        return productDTO.toBuilder()
-                .createdBy(product.getCreatedBy().getUsername())
-                .createdAt(product.getCreatedAt())
-                .build();
+        return product.toBuilder().name(productDTO.getName()).price(productDTO.getPrice()).build();
     }
 
     public void delete(@NonNull String id) {
@@ -41,29 +34,10 @@ public class ProductService {
 
 
     public Optional<ProductDTO> findById(@NonNull String id) {
-        return productRepository.findById(id).map(this::toDto);
+        return productRepository.findById(id);
     }
 
     public List<ProductDTO> findAll() {
-        return productRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
-    }
-
-    private Product toEntity(ProductDTO product) {
-        return Product.builder()
-                .id(product.getId())
-                .name(product.getName())
-                .price(product.getPrice())
-                .createdAt(product.getCreatedAt())
-                .build();
-    }
-
-    private ProductDTO toDto(Product product) {
-        return ProductDTO.builder()
-                .id(product.getId())
-                .name(product.getName())
-                .price(product.getPrice())
-                .createdAt(product.getCreatedAt())
-                .createdBy(product.getCreatedBy().getUsername())
-                .build();
+        return productRepository.findAll();
     }
 }

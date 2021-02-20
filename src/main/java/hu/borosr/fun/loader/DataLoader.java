@@ -1,9 +1,8 @@
 package hu.borosr.fun.loader;
 
 import hu.borosr.fun.dto.UserDTO;
-import hu.borosr.fun.persistence.Role;
-import hu.borosr.fun.persistence.sql.entity.User;
 import hu.borosr.fun.exception.ValidationException;
+import hu.borosr.fun.persistence.Role;
 import hu.borosr.fun.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,7 @@ public class DataLoader implements CommandLineRunner {
         userService.findByUsername(ADMIN).orElseGet(() -> createUser(ADMIN, Role.ADMIN));
     }
 
-    private User createUser(String username, Role role) {
+    private UserDTO createUser(String username, Role role) {
         try {
             return userService.create(UserDTO.builder()
                     .username(username)

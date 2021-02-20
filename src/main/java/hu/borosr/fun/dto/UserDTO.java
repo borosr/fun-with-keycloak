@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
+    private String id;
     private String username;
     private String password; // TODO replace with email in the future and send update password link
     private String fullName;

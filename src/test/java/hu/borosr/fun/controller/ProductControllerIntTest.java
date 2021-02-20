@@ -56,7 +56,7 @@ class ProductControllerIntTest {
                 .statusCode(200)
                 .body("$", notNullValue())
                 .body("name", equalTo(product.getName()))
-                .body("price", equalTo(product.getPrice().floatValue()))
+                .body("price", equalTo(product.getPrice().toString()))
                 .body("createdBy", equalTo(USER))
                 .body("createdAt", notNullValue());
     }

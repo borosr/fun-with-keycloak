@@ -21,12 +21,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
 
-    public User create(@NonNull UserDTO userDTO, @NonNull Role role) throws ValidationException {
+    public UserDTO create(@NonNull UserDTO userDTO, @NonNull Role role) throws ValidationException {
         keycloakClientService.signUp(userDTO.getUsername(), userDTO.getPassword(), role);
-        return userRepository.save(User.builder().username(userDTO.getUsername()).fullName(userDTO.getFullName()).build());
+        return userRepository.save(userDTO);
     }
 
-    public Optional<User> findByUsername(String username) {
+    public Optional<UserDTO> findByUsername(String username) {
         return userRepository.findFirstByUsername(username);
     }
 
@@ -37,7 +37,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<User> findFirstByUsername(String username) {
+    public Optional<UserDTO> findFirstByUsername(String username) {
         return userRepository.findFirstByUsername(username);
     }
 }

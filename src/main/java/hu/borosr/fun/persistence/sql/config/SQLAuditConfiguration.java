@@ -1,4 +1,4 @@
-package hu.borosr.fun.config;
+package hu.borosr.fun.persistence.sql.config;
 
 import hu.borosr.fun.persistence.sql.entity.User;
 import hu.borosr.fun.service.UserService;
@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.representations.IDToken;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -19,16 +20,17 @@ import java.util.Optional;
 @Configuration
 @EnableJpaAuditing
 @RequiredArgsConstructor
-public class AuditConfiguration {
+@ConditionalOnExpression("!${app.mongodb.enabled:false}")
+public class SQLAuditConfiguration {
     private final UserService userService;
 
     @Bean
     public AuditorAware<User> auditorAware() {
-        return new SpringSecurityAuditorAware(userService);
+        return new SQLAuditorAware(userService);
     }
 
     @RequiredArgsConstructor
-    private static class SpringSecurityAuditorAware implements AuditorAware<User>  {
+    private static class SQLAuditorAware implements AuditorAware<User>  {
         private final UserService userService;
         @Override
         public Optional<User> getCurrentAuditor() {
@@ -39,7 +41,8 @@ public class AuditConfiguration {
                     .map(KeycloakPrincipal::getKeycloakSecurityContext)
                     .map(KeycloakSecurityContext::getToken)
                     .map(IDToken::getPreferredUsername)
-                    .flatMap(userService::findFirstByUsername);
+                    .flatMap(userService::findFirstByUsername)
+                    .map(User::fromDto);
         }
     }
 }

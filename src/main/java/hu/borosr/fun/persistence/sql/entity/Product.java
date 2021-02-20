@@ -1,5 +1,6 @@
 package hu.borosr.fun.persistence.sql.entity;
 
+import hu.borosr.fun.dto.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,4 +33,23 @@ public class Product {
     private User createdBy;
     @CreatedDate
     private LocalDateTime createdAt;
+
+    public static Product fromDto(ProductDTO productDTO) {
+        return Product.builder()
+                .id(productDTO.getId())
+                .name(productDTO.getName())
+                .price(productDTO.getPrice())
+                .createdAt(productDTO.getCreatedAt())
+                .build();
+    }
+
+    public ProductDTO toDto() {
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .price(price)
+                .createdAt(createdAt)
+                .createdBy(createdBy.getUsername())
+                .build();
+    }
 }
