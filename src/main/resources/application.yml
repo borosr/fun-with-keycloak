@@ -35,4 +35,4 @@ keycloakAdmin:
 
 app:
   mongodb:
-    enabled: true
+    enabled: false
