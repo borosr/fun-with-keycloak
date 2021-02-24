@@ -20,6 +20,7 @@ jobs:
         working-directory: backend
     steps:
       - uses: actions/checkout@v2
+      - uses: docker
 
       - name: Test docker
         run: docker run -it hello-world
